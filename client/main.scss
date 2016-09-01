@@ -1,0 +1,65 @@
+// variables
+$desktop-breakpoint: 768px;
+
+$nav-bar-height: 10vh;
+$nav-desktop-bar-height: 75px;
+
+// mixins
+@mixin breakpoint($point) {
+  @if $point == mobile {
+    @media (max-width: $desktop-breakpoint) { @content; }
+  }
+  @if $point == desktop {
+    @media (min-width: $desktop-breakpoint) { @content; }
+  }
+}
+
+div.container {
+  width: 100%;
+  height: 100vh;
+}
+
+// nav-bar styling
+
+div.nav-bar {
+  background: red;
+  border-bottom: 1px solid #000;
+
+  .left {
+    float: left;
+  }
+
+  .right {
+    float: right;
+  }
+
+  .title {
+    font-size: 1.5em;
+    font-weight: 800;
+  }
+
+  @include breakpoint(mobile) {
+    height: $nav-bar-height;
+  }
+
+  @include breakpoint(desktop) {
+    height: $nav-desktop-bar-height;
+  }
+}
+
+// map styling
+
+div.map-container {
+  background: blue;
+  height: 500px; // for testing purposes
+
+  @include breakpoint(mobile) {
+    padding-top: $nav-bar-height;
+    height: 100vh - $nav-bar-height;
+  }
+
+  @include breakpoint(desktop) {
+    padding-top: $nav-desktop-bar-height;
+    height: calc(100% - $nav-desktop-bar-height);
+  }
+}
