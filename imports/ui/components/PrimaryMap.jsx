@@ -1,6 +1,8 @@
 import React from 'react';
 import { render } from 'react-dom';
 
+// Adapted from https://github.com/dburles/meteor-google-maps-react-example/blob/master/googlemaps-react.jsx
+
 export default React.createClass({
   mixins: [ReactMeteorData],
   componentDidMount() {
