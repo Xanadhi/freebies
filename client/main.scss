@@ -49,17 +49,18 @@ div.nav-bar {
 
 // map styling
 
-div.map-container {
-  background: blue;
-  height: 500px; // for testing purposes
+#map-container {
+  width: 800px;
+  max-width: 100%;
+  height: 500px;
 
-  @include breakpoint(mobile) {
-    padding-top: $nav-bar-height;
-    height: 100vh - $nav-bar-height;
-  }
+  // @include breakpoint(mobile) {
+  //   padding-top: $nav-bar-height;
+  //   height: 100vh - $nav-bar-height;
+  // }
 
-  @include breakpoint(desktop) {
-    padding-top: $nav-desktop-bar-height;
-    height: calc(100% - $nav-desktop-bar-height);
-  }
+  // @include breakpoint(desktop) {
+  //   padding-top: $nav-desktop-bar-height;
+  //   height: calc(100% - $nav-desktop-bar-height);
+  // }
 }
