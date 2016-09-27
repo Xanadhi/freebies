@@ -21,7 +21,7 @@ export default class FreebieForm extends Component {
 
   render() {
     return (
-      <form className="addressForm" onSubmit={this.handleSubmit.bind(this)}>
+      <form className="address-form" onSubmit={this.handleSubmit.bind(this)}>
         <input 
           type="text" 
           value={this.state.address} 

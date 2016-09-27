@@ -1,29 +1,46 @@
 // variables
 $desktop-breakpoint: 768px;
 
-$nav-bar-height: 10vh;
-$nav-desktop-bar-height: 75px;
+$nav-bar-height: 12vh;
+$nav-desktop-bar-height: 150px;
 
 // mixins
 @mixin breakpoint($point) {
   @if $point == mobile {
-    @media (max-width: $desktop-breakpoint) { @content; }
+    @media (max-width: $desktop-breakpoint - 1) { @content; }
   }
   @if $point == desktop {
     @media (min-width: $desktop-breakpoint) { @content; }
   }
 }
 
+div#render-target {
+  max-height: 100vh;
+}
+
+.container-fluid {
+  padding: 0;
+}
+
 div.container {
-  width: 100%;
-  height: 100vh;
+  width: 100vw;
+  height: auto;
 }
 
 // nav-bar styling
 
-div.nav-bar {
-  background: red;
+.navbar {
+  background: rgba(239,197,202,1);
+  background: -moz-linear-gradient(top, rgba(239,197,202,1) 0%, rgba(210,75,90,1) 50%, rgba(186,39,55,1) 51%, rgba(241,142,153,1) 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(239,197,202,1)), color-stop(50%, rgba(210,75,90,1)), color-stop(51%, rgba(186,39,55,1)), color-stop(100%, rgba(241,142,153,1)));
+  background: -webkit-linear-gradient(top, rgba(239,197,202,1) 0%, rgba(210,75,90,1) 50%, rgba(186,39,55,1) 51%, rgba(241,142,153,1) 100%);
+  background: -o-linear-gradient(top, rgba(239,197,202,1) 0%, rgba(210,75,90,1) 50%, rgba(186,39,55,1) 51%, rgba(241,142,153,1) 100%);
+  background: -ms-linear-gradient(top, rgba(239,197,202,1) 0%, rgba(210,75,90,1) 50%, rgba(186,39,55,1) 51%, rgba(241,142,153,1) 100%);
+  background: linear-gradient(to bottom, rgba(239,197,202,1) 0%, rgba(210,75,90,1) 50%, rgba(186,39,55,1) 51%, rgba(241,142,153,1) 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#efc5ca', endColorstr='#f18e99', GradientType=0 );
+
   border-bottom: 1px solid #000;
+  margin-bottom: 0;
 
   .left {
     float: left;
@@ -36,6 +53,7 @@ div.nav-bar {
   .title {
     font-size: 1.5em;
     font-weight: 800;
+    text-align: center;
   }
 
   @include breakpoint(mobile) {
@@ -51,15 +69,20 @@ div.nav-bar {
 
 #map-container {
   max-width: 100%;
-  height: 80vh;
 
   @include breakpoint(mobile) {
-    padding-top: $nav-bar-height;
-    // height: 100vh - $nav-bar-height;
+    height: 100vh - $nav-bar-height;
   }
 
   @include breakpoint(desktop) {
-    padding-top: $nav-desktop-bar-height;
-    // height: calc(100% - $nav-desktop-bar-height);
+    height: calc(100% - $nav-desktop-bar-height);
   }
+}
+
+// map components
+
+.address-form {
+  position: absolute;
+  bottom: 0;
+  right: 20px;
 }

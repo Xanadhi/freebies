@@ -15,13 +15,17 @@ export default React.createClass({
     };
   },
   _mapOptions() {
-    return {
-      center: new google.maps.LatLng(43.6611066, -79.3842948),
-      zoom: 14
-    };
+    var latLng = Geolocation.latLng();
+
+    if (GoogleMaps.loaded() && latLng) {
+      return {
+        center: new google.maps.LatLng(latLng.lat, latLng.lng),
+        zoom: 17
+      };
+    }
   },
   render() {
-    if (this.data.loaded)
+    if (this.data.loaded && this.data.mapOptions)
       return <GoogleMap name="mymap" options={this.data.mapOptions} />;
 
     return <div>Loading map...</div>;
