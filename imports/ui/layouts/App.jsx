@@ -14,13 +14,11 @@ export default class App extends Component {
       <NavBar />
         <div className="container-fluid">
           <div className="row">
-            <div className="col-xs-12">
-              <FreebieForm />
-            </div>
-          </div>
-          <div className="row">
-            <div className="col-xs-12">
+            <div className="col-xs-12 map-column">
                 <PrimaryMap />
+            </div>
+            <div className="post-button">
+              <FreebieForm />
             </div>
           </div>
         </div>
