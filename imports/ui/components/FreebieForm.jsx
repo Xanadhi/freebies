@@ -14,6 +14,7 @@ export default class FreebieForm extends Component {
     this.setState({address: e.target.value});
   }
 
+// should send data back up to MapContainer
   handleSubmit(e) {
     e.preventDefault();
     console.log(this.state.address);

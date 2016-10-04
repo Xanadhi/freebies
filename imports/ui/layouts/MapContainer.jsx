@@ -4,6 +4,11 @@ import PrimaryMap from '../components/PrimaryMap.jsx';
 import FreebieForm from '../components/FreebieForm.jsx';
 
 export default class MapContainer extends Component {
+
+  constructor(props) {
+    super(props);
+  }
+
   render() {
     return (
       <div>
