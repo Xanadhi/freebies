@@ -8,7 +8,7 @@ export default class App extends Component {
   render() {
     return (    
       <div>
-      <NavBar />
+      <NavBar title="Freebies" />
         <div className="container-fluid">
             <MapContainer />
         </div>
