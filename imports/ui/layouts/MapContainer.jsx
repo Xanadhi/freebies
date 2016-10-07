@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import PrimaryMap from '../components/PrimaryMap.jsx';
-import FreebieForm from '../components/FreebieForm.jsx';
+import AddFreebieButton from '../components/AddFreebieButton.jsx';
 
 export default class MapContainer extends Component {
 
@@ -16,7 +16,7 @@ export default class MapContainer extends Component {
           <PrimaryMap />
         </div>        
         <div className="post-button">
-          <FreebieForm />
+          <AddFreebieButton />
         </div>
       </div>
       )
