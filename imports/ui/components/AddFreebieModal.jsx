@@ -15,10 +15,16 @@ export default class AddFreebieModal extends Component {
 
 // inserts Freebie into the collection
 
-render() {
-  return (
+  render() {
+    return (
+      <div>
+      Hello.
 
-    )
-}
+      <button onClick={this.props.close}>close</button>
+      </div>
+
+
+      )
+  }
 
 }
