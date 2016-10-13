@@ -18,7 +18,14 @@ export default class AddFreebieModal extends Component {
   render() {
     return (
       <div>
-      Hello.
+      <form className="add-form" onSubmit={this.handleSubmit.bind(this)}>
+        <input 
+          type="text" 
+          value={this.state.address} 
+          onChange={this.handleAddressChange.bind(this)} 
+        />
+        <input type="submit" value="Post" />
+      </form>
 
       <button onClick={this.props.close}>close</button>
       </div>

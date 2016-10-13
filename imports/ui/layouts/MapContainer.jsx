@@ -33,7 +33,8 @@ export default class MapContainer extends Component {
           <button onClick={this.openModal.bind(this)}>Open Me</button>
             <Modal
                 isOpen={this.state.modalIsOpen}
-                onRequestClose={this.closeModal.bind(this)} >
+                onRequestClose={this.closeModal.bind(this)}
+                className="add-modal" >
 
                 <AddFreebieModal close={this.closeModal.bind(this)} />
 
