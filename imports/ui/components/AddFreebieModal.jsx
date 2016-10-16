@@ -15,6 +15,22 @@ export default class AddFreebieModal extends Component {
 
 // inserts Freebie into the collection
 
+  constructor(props) {
+    super(props);
+    this.state = {
+      address: ''
+    }
+  }
+
+  handleAddressChange(e) {
+    this.setState({address: e.target.value});
+  }
+
+  handleSubmit(e) {
+    e.preventDefault();
+    console.log(this.state.address);
+  }
+
   render() {
     return (
       <div>
