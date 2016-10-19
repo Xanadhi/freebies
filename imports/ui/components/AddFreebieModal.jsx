@@ -33,14 +33,15 @@ export default class AddFreebieModal extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.name);
+    console.log('Submitted');
+    Freebies.insert( { name: this.state.name, desc: this.state.desc, sponsor: this.state.sponsor, address: this.state.address });
   }
 
   render() {
     return (
       <div className="form-group">
       <form className="add-form" onSubmit={this.handleSubmit.bind(this)}>
-        <label for="name">Name</label>
+        <label htmlFor="name">Name</label>
         <input 
           type="text"
           id="name" 
@@ -48,7 +49,7 @@ export default class AddFreebieModal extends Component {
           className="form-control"
           onChange={this.handleChange.bind(this, 'name')} 
         />
-        <label for="desc">Description</label>
+        <label htmlFor="desc">Description</label>
         <input 
           type="text"
           name="desc"
@@ -56,7 +57,7 @@ export default class AddFreebieModal extends Component {
           className="form-control" 
           onChange={this.handleChange.bind(this, 'desc')} 
         />
-        <label for="sponsor">Sponsor</label>
+        <label htmlFor="sponsor">Sponsor</label>
         <input 
           type="text"
           name="sponsor"
@@ -64,7 +65,7 @@ export default class AddFreebieModal extends Component {
           className="form-control"
           onChange={this.handleChange.bind(this, 'sponsor')} 
         />
-        <label for="address">Address</label>
+        <label htmlFor="address">Address</label>
         <input 
           type="text"
           name="address"
