@@ -19,7 +19,6 @@ export default class AddFreebieModal extends Component {
     super(props);
     this.state = {
       name: '',
-      category: '',
       desc: '',
       sponsor: '',
       address: ''
@@ -34,7 +33,7 @@ export default class AddFreebieModal extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log(this.state.address);
+    console.log(this.state.name);
   }
 
   render() {
@@ -48,14 +47,6 @@ export default class AddFreebieModal extends Component {
           value={this.state.name}
           className="form-control"
           onChange={this.handleChange.bind(this, 'name')} 
-        />
-        <label for="category">Category</label>
-        <input 
-          type="text" 
-          name="category"
-          value={this.state.category} 
-          className="form-control"
-          onChange={this.handleChange.bind(this, 'category')} 
         />
         <label for="desc">Description</label>
         <input 
