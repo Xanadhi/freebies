@@ -18,7 +18,8 @@ export default GoogleMap = React.createClass({
     GoogleMaps.ready(this.props.name, function(map) {
       google.maps.event.addListener(map.instance, 'click', function(event) {
         // This function should be moved to the FreeForm component and should be an onSubmit event
-        Freebies.insert( { lat: event.latLng.lat(), lng: event.latLng.lng() });
+        // Freebies.insert( { lat: event.latLng.lat(), lng: event.latLng.lng() });
+        console.log('boing');
       })
 
       var freebies = {};
