@@ -8,9 +8,9 @@ export default class App extends Component {
   render() {
     return (    
       <div>
-      <NavBar title="Freebies" />
+        <NavBar title="Freebies" />
         <div className="container-fluid">
-            <MapContainer />
+        <MapContainer />
         </div>
       </div>
     );

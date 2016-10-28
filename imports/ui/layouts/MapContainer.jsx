@@ -1,12 +1,26 @@
 import React, { Component } from 'react';
+import { render } from 'react-dom';
+import Modal from 'react-modal';
 
 import PrimaryMap from '../components/PrimaryMap.jsx';
 import AddFreebieButton from '../components/AddFreebieButton.jsx';
+import AddFreebieModal from '../components/AddFreebieModal.jsx';
 
 export default class MapContainer extends Component {
 
   constructor(props) {
-    super(props);
+      super(props);
+      this.state = {
+        modalIsOpen: false
+      }
+  }
+
+  openModal() {
+      this.setState({modalIsOpen: true});
+  }
+
+  closeModal() {
+      this.setState({modalIsOpen: false});
   }
 
   render() {
@@ -16,7 +30,15 @@ export default class MapContainer extends Component {
           <PrimaryMap />
         </div>        
         <div className="post-button">
-          <AddFreebieButton />
+          <button onClick={this.openModal.bind(this)}>Open Me</button>
+            <Modal
+                isOpen={this.state.modalIsOpen}
+                onRequestClose={this.closeModal.bind(this)}
+                className="add-modal" >
+
+                <AddFreebieModal close={this.closeModal.bind(this)} />
+
+            </Modal>
         </div>
       </div>
       )
