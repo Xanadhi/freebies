@@ -21,7 +21,8 @@ export default class AddFreebieModal extends Component {
       name: '',
       desc: '',
       sponsor: '',
-      address: ''
+      address: '',
+      latLng: Geolocation.latLng()
     }
   }
 
@@ -34,7 +35,7 @@ export default class AddFreebieModal extends Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log('Submitted');
-    Freebies.insert( { name: this.state.name, desc: this.state.desc, sponsor: this.state.sponsor, address: this.state.address });
+    Freebies.insert( { name: this.state.name, desc: this.state.desc, sponsor: this.state.sponsor, address: this.state.address, latLng: this.state.latLng });
   }
 
   render() {

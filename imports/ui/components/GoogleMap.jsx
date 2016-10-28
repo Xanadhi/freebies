@@ -29,7 +29,7 @@ export default GoogleMap = React.createClass({
           var marker = new google.maps.Marker({
             draggable: true,
             animation: google.maps.Animation.DROP,
-            position: new google.maps.LatLng(document.lat, document.lng),
+            position: new google.maps.LatLng(document.latLng.lat, document.latLng.lng),
             map: map.instance,
             // store document _id on marker in order to update document within the 'dragend' event
             id: document._id
