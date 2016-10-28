@@ -6,7 +6,7 @@ Freebies.schema = new SimpleSchema({
   name: {type: String},
   desc: {type: String},
   sponsor: {type: String},
-  latLng: {type: Object}
+  latLng: {type: Object, blackbox: true}
 });
 
 Freebies.attachSchema(Freebies.schema);
