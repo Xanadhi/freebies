@@ -35,7 +35,7 @@ export default class AddFreebieModal extends Component {
   handleSubmit(e) {
     e.preventDefault();
     console.log('Submitted');
-    Freebies.insert( { name: this.state.name, desc: this.state.desc, sponsor: this.state.sponsor, address: this.state.address, latLng: this.state.latLng });
+    Freebies.insert( { name: this.state.name, desc: this.state.desc, sponsor: this.state.sponsor, address: this.state.address, latLng: this.state.latLng, created_at: new Date() });
   }
 
   render() {
