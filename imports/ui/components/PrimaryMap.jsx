@@ -23,7 +23,12 @@ export default React.createClass({
     if (GoogleMaps.loaded() && latLng) {
       return {
         center: new google.maps.LatLng(latLng.lat, latLng.lng),
-        zoom: 17
+        zoom: 17,
+        streetViewControl: false, // hide the little person
+        zoomControl: true,
+        zoomControlOptions: {
+          position: google.maps.ControlPosition.RIGHT_CENTER
+        }
       };
     }
   },
