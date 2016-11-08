@@ -24,10 +24,10 @@ class PrimaryMap extends React.Component {
   }
 };
 
-// PrimaryMap.propTypes = {
-//   loaded: React.PropTypes.boolean,
-//   mapOptions: React.PropTypes.object
-// }
+PrimaryMap.propTypes = {
+  loaded: React.PropTypes.bool,
+  mapOptions: React.PropTypes.object
+}
 
 export default PrimaryMapContainer = createContainer (() => {
   const loaded = GoogleMaps.loaded();
