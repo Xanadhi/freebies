@@ -6,17 +6,24 @@ import { Freebies } from '../../api/freebies/freebies.js';
 
 //-- Adapted from https://github.com/dburles/meteor-google-maps-react-example/blob/master/googlemaps-react.jsx
 
-export default React.createClass({
-  mixins: [ReactMeteorData],
+export default class PrimaryMap extends Component {
+  // mixins: [ReactMeteorData],
+
+  constructor(props) {
+      super(props);
+  }
+
   componentDidMount() {
     GoogleMaps.load({key: 'AIzaSyBkDdFEaWkIkLpfAWCu2oTTqJKiN1llxwE'});
-  },
+  }
+
   getMeteorData() {
     return {
       loaded: GoogleMaps.loaded(),
       mapOptions: GoogleMaps.loaded() && this._mapOptions()
     };
-  },
+  }
+
   _mapOptions() {
     var latLng = Geolocation.latLng();
 
@@ -31,12 +38,13 @@ export default React.createClass({
         }
       };
     }
-  },
+  }
+
   render() {
     if (this.data.loaded && this.data.mapOptions)
       return <GoogleMap name="freebiesmap" options={this.data.mapOptions} />;
 
     return <div>Loading map...</div>;
   }
-});
+);
 

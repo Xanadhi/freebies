@@ -3,11 +3,16 @@ import { render } from 'react-dom';
 
 import { Freebies } from '../../api/freebies/freebies.js';
 
-export default GoogleMap = React.createClass({
-  propTypes: {
+export default class GoogleMap extends Component 
+  constructor(props) {
+      super(props);
+  }
+
+  GoogleMap.propTypes = {
     name: React.PropTypes.string.isRequired,
     options: React.PropTypes.object.isRequired
-  },
+  }
+
   componentDidMount() {
     GoogleMaps.create({
       name: this.props.name,
@@ -59,14 +64,16 @@ export default GoogleMap = React.createClass({
         }
       })
     });
-  },
+  }
+
   componentWillUnmount() {
     if (GoogleMaps.maps[this.props.name]) {
       google.maps.event.clearInstanceListeners(GoogleMaps.maps[this.props.name].instance);
       delete GoogleMaps.maps[this.props.name];
     } 
-  },
+  }
+  
   render() {
     return <div id="map-container"></div>;
   }
-});
+);
