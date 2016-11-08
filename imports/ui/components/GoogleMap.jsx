@@ -3,14 +3,9 @@ import { render } from 'react-dom';
 
 import { Freebies } from '../../api/freebies/freebies.js';
 
-export default class GoogleMap extends Component 
+export default class GoogleMap extends React.Component {
   constructor(props) {
       super(props);
-  }
-
-  GoogleMap.propTypes = {
-    name: React.PropTypes.string.isRequired,
-    options: React.PropTypes.object.isRequired
   }
 
   componentDidMount() {
@@ -72,8 +67,13 @@ export default class GoogleMap extends Component
       delete GoogleMaps.maps[this.props.name];
     } 
   }
-  
+
   render() {
     return <div id="map-container"></div>;
   }
-);
+};
+
+GoogleMap.propTypes = {
+  name: React.PropTypes.string.isRequired,
+  options: React.PropTypes.object.isRequired
+}

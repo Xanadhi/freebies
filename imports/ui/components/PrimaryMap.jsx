@@ -1,14 +1,13 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { createContainer } from 'meteor/react-meteor-data';
 
 import GoogleMap from './GoogleMap.jsx';
 import { Freebies } from '../../api/freebies/freebies.js';
 
 //-- Adapted from https://github.com/dburles/meteor-google-maps-react-example/blob/master/googlemaps-react.jsx
 
-export default class PrimaryMap extends Component {
-  // mixins: [ReactMeteorData],
-
+class PrimaryMap extends React.Component {
   constructor(props) {
       super(props);
   }
@@ -17,34 +16,38 @@ export default class PrimaryMap extends Component {
     GoogleMaps.load({key: 'AIzaSyBkDdFEaWkIkLpfAWCu2oTTqJKiN1llxwE'});
   }
 
-  getMeteorData() {
-    return {
-      loaded: GoogleMaps.loaded(),
-      mapOptions: GoogleMaps.loaded() && this._mapOptions()
-    };
-  }
-
-  _mapOptions() {
-    var latLng = Geolocation.latLng();
-
-    if (GoogleMaps.loaded() && latLng) {
-      return {
-        center: new google.maps.LatLng(latLng.lat, latLng.lng),
-        zoom: 17,
-        streetViewControl: false, // hide the little person
-        zoomControl: true,
-        zoomControlOptions: {
-          position: google.maps.ControlPosition.RIGHT_CENTER
-        }
-      };
-    }
-  }
-
   render() {
-    if (this.data.loaded && this.data.mapOptions)
-      return <GoogleMap name="freebiesmap" options={this.data.mapOptions} />;
+    if (this.props.loaded && this.props.mapOptions)
+      return <GoogleMap name="freebiesmap" options={this.props.mapOptions} />;
 
     return <div>Loading map...</div>;
   }
-);
+};
 
+// PrimaryMap.propTypes = {
+//   loaded: React.PropTypes.boolean,
+//   mapOptions: React.PropTypes.object
+// }
+
+export default PrimaryMapContainer = createContainer (() => {
+  const loaded = GoogleMaps.loaded();
+  const latLng = Geolocation.latLng();
+  let mapOptions;
+
+  if (GoogleMaps.loaded() && latLng) {
+    mapOptions = {
+      center: new google.maps.LatLng(latLng.lat, latLng.lng),
+      zoom: 17,
+      streetViewControl: false, // hide the little person
+      zoomControl: true,
+      zoomControlOptions: {
+        position: google.maps.ControlPosition.RIGHT_CENTER
+      }
+    }
+  }
+
+  return {
+    loaded,
+    mapOptions
+  }
+}, PrimaryMap)
