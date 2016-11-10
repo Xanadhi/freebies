@@ -32,19 +32,20 @@ PrimaryMap.propTypes = {
 export default PrimaryMapContainer = createContainer (() => {
   const loaded = GoogleMaps.loaded();
   const latLng = Geolocation.latLng();
-  let mapOptions;
-
-  if (GoogleMaps.loaded() && latLng) {
-    mapOptions = {
-      center: new google.maps.LatLng(latLng.lat, latLng.lng),
-      zoom: 17,
-      streetViewControl: false, // hide the little person
-      zoomControl: true,
-      zoomControlOptions: {
-        position: google.maps.ControlPosition.RIGHT_CENTER
+  const _mapOptions = function() {
+    if (loaded && latLng) {
+      return {
+        center: new google.maps.LatLng(latLng.lat, latLng.lng),
+        zoom: 17,
+        streetViewControl: false, // hide the little person
+        zoomControl: true,
+        zoomControlOptions: {
+          position: google.maps.ControlPosition.RIGHT_CENTER
+        }
       }
     }
   }
+  const mapOptions = _mapOptions();
 
   return {
     loaded,
