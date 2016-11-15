@@ -33,7 +33,7 @@ export default PrimaryMapContainer = createContainer (() => {
   const loaded = GoogleMaps.loaded();
   const latLng = Geolocation.latLng();
   const _mapOptions = function() {
-    if (loaded && latLng) {
+    if (GoogleMaps.loaded() && latLng) {
       return {
         center: new google.maps.LatLng(latLng.lat, latLng.lng),
         zoom: 17,
