@@ -31,10 +31,12 @@ PrimaryMap.propTypes = {
 }
 
 
-// container component for the Primary Map
+// container component for the Primary Map that provides reactive data
 export default PrimaryMapContainer = createContainer (() => {
   const loaded = GoogleMaps.loaded();
   const latLng = Geolocation.latLng();
+  const freebies = Meteor.subscribe('freebies');
+
   const _mapOptions = function() {
     if (GoogleMaps.loaded() && latLng) {
       return {
@@ -53,6 +55,7 @@ export default PrimaryMapContainer = createContainer (() => {
   return {
     loaded,
     mapOptions,
-    latLng
+    latLng,
+    freebies
   }
 }, PrimaryMap)
