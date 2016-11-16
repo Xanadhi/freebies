@@ -3,7 +3,6 @@ import { render } from 'react-dom';
 import Modal from 'react-modal';
 
 import PrimaryMapContainer from '../components/PrimaryMap.jsx';
-import AddFreebieButton from '../components/AddFreebieButton.jsx';
 import AddFreebieModal from '../components/AddFreebieModal.jsx';
 
 export default class HomeContainer extends Component {
