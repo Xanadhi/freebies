@@ -2,11 +2,11 @@ import { Mongo } from 'meteor/mongo';
 
 export const Freebies = new Mongo.Collection('freebies');
 
-if (Meteor.isServer) {
-  Meteor.publish('freebies', function freebiesPublication() {
-    return Freebies.find();
-  });
-}
+// if (Meteor.isServer) {
+//   Meteor.publish('freebies', function freebiesPublication() {
+//     return Freebies.find();
+//   });
+// }
 
 Freebies.schema = new SimpleSchema({
   name: {type: String},
