@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import NavBar from './NavBar.jsx';
-import MapContainer from './MapContainer.jsx';
+import HomeContainer from './HomeContainer.jsx';
 
 export default class App extends Component {
 
@@ -10,7 +10,7 @@ export default class App extends Component {
       <div>
         <NavBar title="Freebies" />
         <div className="container-fluid">
-        <MapContainer />
+        <HomeContainer />
         </div>
       </div>
     );
