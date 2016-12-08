@@ -26,7 +26,7 @@ $nav-desktop-bar-height: 150px;
 // nav-bar styling
 
 .navbar {
-  background: rgba(239,197,202,1);
+  background: red;
   border-bottom: 1px solid #000;
   margin-bottom: 0;
 
@@ -39,9 +39,14 @@ $nav-desktop-bar-height: 150px;
   }
 
   .title {
-    font-size: 1.5em;
     font-weight: 800;
     text-align: center;
+    color: white;
+    font-family: "Lobster", cursive;
+  }
+
+  h1 {
+    font-size: 50px;
   }
 
   @include breakpoint(mobile) {
