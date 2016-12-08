@@ -47,7 +47,7 @@ export default class GoogleMap extends React.Component {
           freebies[document._id] = marker;
         },
         changed: function(newDoc, oldDoc) {
-          freebies[newDoc._id].setPosition({ lat: newDoc.lat, lng: newDoc.lng });
+          freebies[newDoc._id].setPosition({ lat: newDoc.latLng.lat, lng: newDoc.latLng.lng });
         },
         removed: function(oldDoc) {
           // remove marker from map

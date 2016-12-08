@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
+import { Meteor } from 'meteor/meteor';
 
 import { Freebies } from '../../api/freebies/freebies.js';
 
@@ -34,8 +35,21 @@ export default class AddFreebieModal extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('Submitted');
-    Freebies.insert( { name: this.state.name, desc: this.state.desc, sponsor: this.state.sponsor, address: this.state.address, latLng: this.state.latLng, created_at: new Date() });
+    Meteor.call('freebies.insert', {
+      name: this.state.name, 
+      desc: this.state.desc, 
+      sponsor: this.state.sponsor, 
+      address: this.state.address, 
+      latLng: this.state.latLng
+    }, (err, res) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('success');
+      }
+    });
+
+    this.props.close();
   }
 
   render() {
