@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 
-import { Freebies } from '../../api/freebies/freebies.js';
-
 export default class AddFreebieModal extends Component {
 
 // ask user if they want to add current location as a Freeie
