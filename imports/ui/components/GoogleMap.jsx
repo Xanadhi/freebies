@@ -39,6 +39,10 @@ export default class GoogleMap extends React.Component {
           google.maps.event.addListener(marker, 'dragend', function(event) {
             Freebies.update(marker.id, { $set: { lat: event.latLng.lat(), lng: event.latLng.lng() }});
           });
+          // when marker is clicked
+          google.maps.event.addListener(marker, 'click', function(event) {
+            console.log('click');
+          });          
           // store in the Freebies object
           freebies[document._id] = marker;
         },
