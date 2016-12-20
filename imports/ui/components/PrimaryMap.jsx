@@ -19,7 +19,7 @@ class PrimaryMap extends React.Component {
 
   render() {
     if (this.props.loaded && this.props.mapOptions)
-      return <GoogleMap name="freebiesmap" options={this.props.mapOptions} />;
+      return <GoogleMap name="freebiesmap" options={this.props.mapOptions}/>;
 
     return <div>Loading map...</div>;
   }

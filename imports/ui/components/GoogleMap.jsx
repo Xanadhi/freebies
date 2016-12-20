@@ -1,12 +1,25 @@
 import React from 'react';
 import { render } from 'react-dom';
+import Modal from 'react-modal';
 
 import { Freebies } from '../../api/freebies/freebies.js';
+import ViewFreebieModal from './ViewFreebieModal.jsx';
 
 export default class GoogleMap extends React.Component {
   constructor(props) {
       super(props);
+      this.state = {
+        modalIsOpen: false
+      }
   }
+
+  openModal() {
+      this.setState({modalIsOpen: true});
+  }
+
+  closeModal() {
+      this.setState({modalIsOpen: false});
+  }  
 
   componentDidMount() {
     GoogleMaps.create({
@@ -14,6 +27,10 @@ export default class GoogleMap extends React.Component {
       element: document.getElementById('map-container'),
       options: this.props.options
     });
+
+    const modalIsOpen = this.state.modalIsOpen;
+    const openModal = this.openModal.bind(this);
+    const closeModal = this.closeModal;
 
     GoogleMaps.ready(this.props.name, function(map) {
       google.maps.event.addListener(map.instance, 'click', function(event) {
@@ -41,7 +58,7 @@ export default class GoogleMap extends React.Component {
           });
           // when marker is clicked
           google.maps.event.addListener(marker, 'click', function(event) {
-            console.log('click');
+            openModal();
           });          
           // store in the Freebies object
           freebies[document._id] = marker;
@@ -73,7 +90,19 @@ export default class GoogleMap extends React.Component {
   }
 
   render() {
-    return <div id="map-container"></div>;
+    return (
+      <div>
+        <div id="map-container"></div>
+          <Modal
+          isOpen={this.state.modalIsOpen}
+          onRequestClose={this.closeModal.bind(this)}
+          className="add-modal" >
+
+          <ViewFreebieModal close={this.closeModal.bind(this)} />
+
+          </Modal>
+      </div>
+    )
   }
 };
 
