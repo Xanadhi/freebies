@@ -10,7 +10,7 @@ export default class GoogleMap extends React.Component {
       super(props);
       this.state = {
         modalIsOpen: false,
-        currentFreebie: {}
+        currentFreebie: ""
     }
   }
 

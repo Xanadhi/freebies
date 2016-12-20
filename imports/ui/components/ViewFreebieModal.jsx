@@ -8,23 +8,25 @@ export default class ViewFreebieModal extends Component {
     super(props);
   }
 
-  componentDidMount() {
-    this.getFreebie();
-    console.log(this.props.freebie)
-  }
-
   getFreebie() {
-    Freebies.find( { _id: this.props.freebie })
+    return Freebies.findOne( { _id: this.props.freebie })
   }
 
   render() {
-    
-    return (
-      <div>
-        <h1>Hello.</h1>
-        <button onClick={this.props.close}>close</button>
-      </div>
-    )
+      
+    if (this.props.freebie) {
+      const freebie = this.getFreebie();
+
+      return (
+        <div>
+          <h1>Hello, you are viewing a freebie at {freebie.address}</h1>
+          <button onClick={this.props.close}>close</button>
+        </div>
+      )      
+    }
+
+    return <div>Loading...</div>;
+
   }
 
 }
