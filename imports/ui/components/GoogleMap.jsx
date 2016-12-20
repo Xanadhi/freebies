@@ -9,17 +9,19 @@ export default class GoogleMap extends React.Component {
   constructor(props) {
       super(props);
       this.state = {
-        modalIsOpen: false
-      }
+        modalIsOpen: false,
+        currentFreebie: {}
+    }
   }
 
-  openModal() {
+  openModal(id) {
       this.setState({modalIsOpen: true});
+      this.setState({currentFreebie: id});
   }
 
   closeModal() {
       this.setState({modalIsOpen: false});
-  }  
+  }
 
   componentDidMount() {
     GoogleMaps.create({
@@ -28,9 +30,7 @@ export default class GoogleMap extends React.Component {
       options: this.props.options
     });
 
-    const modalIsOpen = this.state.modalIsOpen;
     const openModal = this.openModal.bind(this);
-    const closeModal = this.closeModal;
 
     GoogleMaps.ready(this.props.name, function(map) {
       google.maps.event.addListener(map.instance, 'click', function(event) {
@@ -58,7 +58,7 @@ export default class GoogleMap extends React.Component {
           });
           // when marker is clicked
           google.maps.event.addListener(marker, 'click', function(event) {
-            openModal();
+            openModal(marker.id);
           });          
           // store in the Freebies object
           freebies[document._id] = marker;
@@ -98,7 +98,7 @@ export default class GoogleMap extends React.Component {
           onRequestClose={this.closeModal.bind(this)}
           className="add-modal" >
 
-          <ViewFreebieModal close={this.closeModal.bind(this)} />
+          <ViewFreebieModal freebie={this.state.currentFreebie} close={this.closeModal.bind(this)} />
 
           </Modal>
       </div>
