@@ -35,7 +35,6 @@ PrimaryMap.propTypes = {
 export default PrimaryMapContainer = createContainer (() => {
   const loaded = GoogleMaps.loaded();
   const latLng = Geolocation.latLng();
-  const freebies = Meteor.subscribe('freebies');
 
   const _mapOptions = function() {
     if (GoogleMaps.loaded() && latLng) {
@@ -55,7 +54,6 @@ export default PrimaryMapContainer = createContainer (() => {
   return {
     loaded,
     mapOptions,
-    latLng,
-    freebies
+    latLng
   }
 }, PrimaryMap)
