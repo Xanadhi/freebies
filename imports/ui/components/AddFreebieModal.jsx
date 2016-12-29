@@ -17,10 +17,8 @@ export default class AddFreebieModal extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
       desc: '',
       sponsor: '',
-      address: '',
       latLng: Geolocation.latLng()
     }
   }
@@ -34,10 +32,8 @@ export default class AddFreebieModal extends Component {
   handleSubmit(e) {
     e.preventDefault();
     Meteor.call('freebies.insert', {
-      name: this.state.name, 
       desc: this.state.desc, 
       sponsor: this.state.sponsor, 
-      address: this.state.address, 
       latLng: this.state.latLng
     }, (err, res) => {
       if (err) {
@@ -54,38 +50,23 @@ export default class AddFreebieModal extends Component {
     return (
       <div className="form-group">
       <form className="add-form" onSubmit={this.handleSubmit.bind(this)}>
-        <label htmlFor="name">Name</label>
+        <label htmlFor="name">What's being given away?</label>
         <input 
           type="text"
           id="name" 
-          value={this.state.name}
-          className="form-control"
-          onChange={this.handleChange.bind(this, 'name')} 
-        />
-        <label htmlFor="desc">Description</label>
-        <input 
-          type="text"
-          name="desc"
           value={this.state.desc}
-          className="form-control" 
+          className="form-control"
           onChange={this.handleChange.bind(this, 'desc')} 
         />
-        <label htmlFor="sponsor">Sponsor</label>
+
+        <label htmlFor="sponsor">Who's giving it away?</label>
         <input 
           type="text"
           name="sponsor"
           value={this.state.sponsor} 
           className="form-control"
           onChange={this.handleChange.bind(this, 'sponsor')} 
-        />
-        <label htmlFor="address">Address</label>
-        <input 
-          type="text"
-          name="address"
-          value={this.state.address}
-          className="form-control"
-          onChange={this.handleChange.bind(this, 'address')} 
-        />        
+        />     
 
         <input type="submit" className="btn btn-default" value="Post" />
       </form>

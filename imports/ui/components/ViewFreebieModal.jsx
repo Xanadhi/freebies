@@ -19,7 +19,7 @@ export default class ViewFreebieModal extends Component {
 
       return (
         <div>
-          <h1>Hello, you are viewing a freebie at {freebie.address}</h1>
+          <h1>{freebie.sponsor} is giving away {freebie.desc}</h1>
           <button onClick={this.props.close}>close</button>
         </div>
       )      
