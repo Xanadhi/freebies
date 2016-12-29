@@ -6,8 +6,8 @@ import { Freebies } from '../../api/freebies/freebies.js';
 import ViewFreebieModal from './ViewFreebieModal.jsx';
 
 export default class GoogleMap extends React.Component {
-  constructor(props) {
-      super(props);
+  constructor() {
+      super();
       this.state = {
         modalIsOpen: false,
         currentFreebie: ""

@@ -14,8 +14,8 @@ export default class AddFreebieModal extends Component {
 
 // inserts Freebie into the collection
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
       desc: '',
       sponsor: '',

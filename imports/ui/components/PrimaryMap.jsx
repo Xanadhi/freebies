@@ -8,11 +8,9 @@ import { Freebies } from '../../api/freebies/freebies.js';
 //-- Adapted from https://github.com/dburles/meteor-google-maps-react-example/blob/master/googlemaps-react.jsx
 
 // hybrid view and container component for the Google Map
-class PrimaryMap extends React.Component {
-  constructor(props) {
-      super(props);
-  }
+// all this does is fetch data and pass it to the GoogleMap component, which is what actually displays stuff
 
+class PrimaryMap extends React.Component {
   componentDidMount() {
     GoogleMaps.load({key: 'AIzaSyBkDdFEaWkIkLpfAWCu2oTTqJKiN1llxwE'});
   }

@@ -3,11 +3,6 @@ import { render } from 'react-dom';
 import { Freebies } from '../../api/freebies/freebies.js';
 
 export default class ViewFreebieModal extends Component {
-
-  constructor(props) {
-    super(props);
-  }
-
   getFreebie() {
     return Freebies.findOne( { _id: this.props.freebie })
   }
