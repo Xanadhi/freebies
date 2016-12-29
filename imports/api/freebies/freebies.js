@@ -1,13 +1,22 @@
 import { Mongo } from 'meteor/mongo';
+import { Meteor } from 'meteor/meteor';
+import { check } from 'meteor/check';
 
 export const Freebies = new Mongo.Collection('freebies');
 
-Freebies.schema = new SimpleSchema({
-  name: {type: String},
-  desc: {type: String},
-  sponsor: {type: String},
-  latLng: {type: Object, blackbox: true},
-  created_at: {type: Date}
-});
+Meteor.methods({
+  'freebies.insert'({desc, sponsor, latLng}) {
+    new SimpleSchema({
+      desc: {type: String},
+      sponsor: {type: String},
+      latLng: {type: Object, blackbox: true}
+    })
 
-Freebies.attachSchema(Freebies.schema);
+    Freebies.insert({
+      desc,
+      sponsor,
+      latLng,
+      created_at: new Date()
+    })
+  }
+})

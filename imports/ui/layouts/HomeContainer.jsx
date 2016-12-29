@@ -2,11 +2,10 @@ import React, { Component } from 'react';
 import { render } from 'react-dom';
 import Modal from 'react-modal';
 
-import PrimaryMap from '../components/PrimaryMap.jsx';
-import AddFreebieButton from '../components/AddFreebieButton.jsx';
+import PrimaryMapContainer from '../components/PrimaryMap.jsx';
 import AddFreebieModal from '../components/AddFreebieModal.jsx';
 
-export default class MapContainer extends Component {
+export default class HomeContainer extends Component {
 
   constructor(props) {
       super(props);
@@ -27,7 +26,7 @@ export default class MapContainer extends Component {
     return (
       <div>
         <div className="col-xs-12 map-column">
-          <PrimaryMap />
+          <PrimaryMapContainer />
         </div>        
         <div className="post-button">
           <button onClick={this.openModal.bind(this)}>Open Me</button>

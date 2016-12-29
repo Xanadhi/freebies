@@ -7,18 +7,17 @@ import { Freebies } from '../../api/freebies/freebies.js';
 
 //-- Adapted from https://github.com/dburles/meteor-google-maps-react-example/blob/master/googlemaps-react.jsx
 
-class PrimaryMap extends React.Component {
-  constructor(props) {
-      super(props);
-  }
+// hybrid view and container component for the Google Map
+// all this does is fetch data and pass it to the GoogleMap component, which is what actually displays stuff
 
+class PrimaryMap extends React.Component {
   componentDidMount() {
     GoogleMaps.load({key: 'AIzaSyBkDdFEaWkIkLpfAWCu2oTTqJKiN1llxwE'});
   }
 
   render() {
     if (this.props.loaded && this.props.mapOptions)
-      return <GoogleMap name="freebiesmap" options={this.props.mapOptions} />;
+      return <GoogleMap name="freebiesmap" options={this.props.mapOptions}/>;
 
     return <div>Loading map...</div>;
   }
@@ -29,9 +28,12 @@ PrimaryMap.propTypes = {
   mapOptions: React.PropTypes.object
 }
 
+
+// container component for the Primary Map that provides reactive data
 export default PrimaryMapContainer = createContainer (() => {
   const loaded = GoogleMaps.loaded();
   const latLng = Geolocation.latLng();
+
   const _mapOptions = function() {
     if (GoogleMaps.loaded() && latLng) {
       return {
@@ -49,6 +51,7 @@ export default PrimaryMapContainer = createContainer (() => {
 
   return {
     loaded,
-    mapOptions
+    mapOptions,
+    latLng
   }
 }, PrimaryMap)

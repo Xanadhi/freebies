@@ -1,11 +1,26 @@
 import React from 'react';
 import { render } from 'react-dom';
+import Modal from 'react-modal';
 
 import { Freebies } from '../../api/freebies/freebies.js';
+import ViewFreebieModal from './ViewFreebieModal.jsx';
 
 export default class GoogleMap extends React.Component {
-  constructor(props) {
-      super(props);
+  constructor() {
+      super();
+      this.state = {
+        modalIsOpen: false,
+        currentFreebie: ""
+    }
+  }
+
+  openModal(id) {
+      this.setState({modalIsOpen: true});
+      this.setState({currentFreebie: id});
+  }
+
+  closeModal() {
+      this.setState({modalIsOpen: false});
   }
 
   componentDidMount() {
@@ -14,6 +29,8 @@ export default class GoogleMap extends React.Component {
       element: document.getElementById('map-container'),
       options: this.props.options
     });
+
+    const openModal = this.openModal.bind(this);
 
     GoogleMaps.ready(this.props.name, function(map) {
       google.maps.event.addListener(map.instance, 'click', function(event) {
@@ -39,11 +56,15 @@ export default class GoogleMap extends React.Component {
           google.maps.event.addListener(marker, 'dragend', function(event) {
             Freebies.update(marker.id, { $set: { lat: event.latLng.lat(), lng: event.latLng.lng() }});
           });
+          // when marker is clicked
+          google.maps.event.addListener(marker, 'click', function(event) {
+            openModal(marker.id);
+          });          
           // store in the Freebies object
           freebies[document._id] = marker;
         },
         changed: function(newDoc, oldDoc) {
-          freebies[newDoc._id].setPosition({ lat: newDoc.lat, lng: newDoc.lng });
+          freebies[newDoc._id].setPosition({ lat: newDoc.latLng.lat, lng: newDoc.latLng.lng });
         },
         removed: function(oldDoc) {
           // remove marker from map
@@ -69,7 +90,19 @@ export default class GoogleMap extends React.Component {
   }
 
   render() {
-    return <div id="map-container"></div>;
+    return (
+      <div>
+        <div id="map-container"></div>
+          <Modal
+          isOpen={this.state.modalIsOpen}
+          onRequestClose={this.closeModal.bind(this)}
+          className="add-modal" >
+
+          <ViewFreebieModal freebie={this.state.currentFreebie} close={this.closeModal.bind(this)} />
+
+          </Modal>
+      </div>
+    )
   }
 };
 
