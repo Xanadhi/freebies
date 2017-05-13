@@ -24,6 +24,8 @@ export default class AddFreebieModal extends Component {
       address: '',
       latLng: Geolocation.latLng()
     }
+
+    this.handleSubmit = this.handleSubmit.bind(this)
   }
 
   handleChange(name, e) {
@@ -34,14 +36,14 @@ export default class AddFreebieModal extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    console.log('Submitted');
     Freebies.insert( { name: this.state.name, desc: this.state.desc, sponsor: this.state.sponsor, address: this.state.address, latLng: this.state.latLng, created_at: new Date() });
+    this.props.close();
   }
 
   render() {
     return (
       <div className="form-group">
-      <form className="add-form" onSubmit={this.handleSubmit.bind(this)}>
+      <form className="add-form" onSubmit={this.handleSubmit}>
         <label htmlFor="name">Name</label>
         <input 
           type="text"
@@ -79,6 +81,8 @@ export default class AddFreebieModal extends Component {
       </form>
 
       <button onClick={this.props.close}>close</button>
+
+      <p>Adding {this.state.name}</p>
       </div>
 
 
