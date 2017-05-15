@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { render } from 'react-dom';
-
-import { Freebies } from '../../api/freebies/freebies.js';
+import { Meteor } from 'meteor/meteor';
 
 export default class AddFreebieModal extends Component {
 
@@ -15,13 +14,11 @@ export default class AddFreebieModal extends Component {
 
 // inserts Freebie into the collection
 
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
     this.state = {
-      name: '',
       desc: '',
       sponsor: '',
-      address: '',
       latLng: Geolocation.latLng()
     }
     this.handleChange = this.handleChange.bind(this)
@@ -36,7 +33,17 @@ export default class AddFreebieModal extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    Freebies.insert( { name: this.state.name, desc: this.state.desc, sponsor: this.state.sponsor, address: this.state.address, latLng: this.state.latLng, created_at: new Date() });
+    Meteor.call('freebies.insert', {
+      desc: this.state.desc, 
+      sponsor: this.state.sponsor, 
+      latLng: this.state.latLng
+    }, (err, res) => {
+      if (err) {
+        console.log(err);
+      } else {
+        console.log('success');
+      }
+    });
     this.props.close();
   }
 
@@ -60,7 +67,8 @@ export default class AddFreebieModal extends Component {
           className="form-control" 
           onChange={this.handleChange} 
         />
-        <label htmlFor="sponsor">Sponsor</label>
+
+        <label htmlFor="sponsor">Who's giving it away?</label>
         <input 
           type="text"
           name="sponsor"
