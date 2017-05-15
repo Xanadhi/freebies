@@ -24,13 +24,13 @@ export default class AddFreebieModal extends Component {
       address: '',
       latLng: Geolocation.latLng()
     }
-
+    this.handleChange = this.handleChange.bind(this)
     this.handleSubmit = this.handleSubmit.bind(this)
   }
 
-  handleChange(name, e) {
+  handleChange(e) {
     var change = {};
-    change[name] = e.target.value
+    change[e.target.name] = e.target.value
     this.setState(change);
   }
 
@@ -47,10 +47,10 @@ export default class AddFreebieModal extends Component {
         <label htmlFor="name">Name</label>
         <input 
           type="text"
-          id="name" 
+          name="name" 
           value={this.state.name}
           className="form-control"
-          onChange={this.handleChange.bind(this, 'name')} 
+          onChange={this.handleChange} 
         />
         <label htmlFor="desc">Description</label>
         <input 
@@ -58,7 +58,7 @@ export default class AddFreebieModal extends Component {
           name="desc"
           value={this.state.desc}
           className="form-control" 
-          onChange={this.handleChange.bind(this, 'desc')} 
+          onChange={this.handleChange} 
         />
         <label htmlFor="sponsor">Sponsor</label>
         <input 
@@ -66,7 +66,7 @@ export default class AddFreebieModal extends Component {
           name="sponsor"
           value={this.state.sponsor} 
           className="form-control"
-          onChange={this.handleChange.bind(this, 'sponsor')} 
+          onChange={this.handleChange} 
         />
         <label htmlFor="address">Address</label>
         <input 
@@ -74,7 +74,7 @@ export default class AddFreebieModal extends Component {
           name="address"
           value={this.state.address}
           className="form-control"
-          onChange={this.handleChange.bind(this, 'address')} 
+          onChange={this.handleChange} 
         />        
 
         <input type="submit" className="btn btn-default" value="Post" />
